@@ -1,0 +1,200 @@
+/* Base preferences*/
+html {
+}
+
+html *,
+html :before,
+html :after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F9F9F9;
+    font-family: "Roboto", 'Arial', serif;
+}
+
+
+/* Fonts */
+@font-face {
+    src: url(../fonts/Roboto-Light.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 300;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-LightItalic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 300;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-Regular.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+@font-face {
+    src: url(../Roboto-Italic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-Medium.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-MediumItalic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-Bold.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 600;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-BoldItalic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 600;
+}
+
+
+/* Content container */
+.content-container {
+    max-width: 768px;
+    padding: 140px 20px 100px 20px;
+    margin: 0 auto;
+}
+
+
+/* Error message */
+.error-message {
+    background-color: #FFF9F0;
+    border: 0.5px solid #FF9700;
+    border-left: 4px solid #FF9700;
+    border-radius: 4px;
+    padding: 22px 20px 19px 24px;
+}
+
+.error-message-content {
+    display: inline-block;
+}
+
+.error-message-content svg {
+    display: inline-block;
+    width: 22px;
+    vertical-align: middle;
+    margin: 0 24px 2px 0;
+}
+
+.error-message-content span {
+    display: inline-block;
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+}
+
+@media only screen and (max-width: 480px) {
+    .error-message {
+        padding: 20px 12px 17px 12px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .error-message-content svg {
+        width: 20px;
+        margin: 0 8px 2px 0;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .error-message-content span {
+        font-size: 15px;
+        color: #000000;
+    }
+}
+
+
+/* Paragraph */
+.paragraph {
+    margin-top: 34px;
+}
+
+.paragraph p {
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #000000;
+}
+
+.paragraph p + p {
+    padding: 24px 0 0 0;
+}
+
+.action-buttons {
+    margin-top: 60px;
+}
+
+@media only screen and (max-width: 480px) {
+    .action-buttons {
+        margin-top: 48px;
+    }
+}
+
+.btn {
+    display: inline-block;
+    border: 0;
+    border-radius: 6px;
+    background: -webkit-gradient(linear, left top, right top, from(#158AFF), to(#8862F9));
+    background: -o-linear-gradient(left, #158AFF 0%, #8862F9 100%);
+    background: linear-gradient(to right, #158AFF 0%, #8862F9 100%);
+    padding: 12px 28px 14px 28px;
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #FFFFFF;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #8862F9;
+}
+
+
+@media only screen and (max-width: 379px) {
+    .btn {
+        padding: 12px 22px 14px 22px;
+    }
+}
+
+.link {
+    display: inline-block;
+    margin: 0 0 0 16px;
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #158AFF;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #8862F9;
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 379px) {
+    .link {
+        margin: 0 0 0 8px;
+    }
+}

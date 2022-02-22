@@ -1,0 +1,52 @@
+{
+    "name": "@lumeweb/extension",
+    "version": "0.1.0",
+    "description": "The browser extension that enables a gateway into web3",
+    "main": "src/background.ts",
+    "type": "module",
+    "scripts": {
+        "build": "node build.js && crx pack public"
+    },
+    "author": "Derrick Hammer",
+    "license": "MIT",
+    "devDependencies": {
+        "@lumeweb/js-sha3-browser": "../js-sha3-browser/",
+        "@lumeweb/randombytes-browser": "../randombytes-browser/",
+        "@types/webextension-polyfill": "^0.8.2",
+        "assert": "^2.0.0",
+        "bower": "^1.8.13",
+        "buffer-browserify": "^0.2.5",
+        "buffer-fill": "^1.0.0",
+        "crypto-browserify": "^3.12.0",
+        "esbuild": "^0.14.18",
+        "https-browserify": "^1.0.0",
+        "js-sha3": "../js-sha3-browser",
+        "path-browserify": "^1.0.1",
+        "prettier": "^2.5.1",
+        "skynet-js": "^3.0.2",
+        "stream-browserify": "^3.0.0",
+        "typescript": "^4.5.5",
+        "url": "^0.11.0",
+        "webextension-polyfill": "^0.8.0"
+    },
+    "dependencies": {
+        "@lumeweb/extension": "../extension/",
+        "@lumeweb/resolver": "../resolver/",
+        "crx": "^5.0.1",
+        "fetch-retry": "^5.0.1",
+        "is-ipfs": "^6.0.2",
+        "node-process": "^1.0.1",
+        "web-ext": "^6.7.0",
+        "whatwg-fetch": "^3.6.2"
+    },
+    "browser": {
+        "path": "path-browserify",
+        "crypto": "crypto-browserify",
+        "stream": "stream-browserify",
+        "buffer": "buffer-browserify",
+        "https": "https-browserify",
+        "assert": "assert",
+        "js-sha3": "@lumeweb/js-sha3-browser",
+        "randombytes": "@lumeweb/randombytes-browser"
+    }
+}

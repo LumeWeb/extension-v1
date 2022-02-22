@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Lume Web3 Gateway",
+    "description": "",
+    "version": "0.1",
+    "background": {
+        "scripts": ["background.mjs"],
+        "persistent": true
+    },
+
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "proxy",
+        "<all_urls>"
+    ],
+    "web_accessible_resources": [
+        "dns.html",
+        "error.html"
+    ]
+}

@@ -1,0 +1,114 @@
+body {
+    background-color: #F9F9F9;
+    font-family: "Roboto", 'Arial', serif;
+}
+
+#background-error-message {
+    background-color: #F9F9F9;
+}
+
+#background-loadscreen {
+    background-color: #3490DC;
+}
+
+/* Fonts */
+@font-face {
+    src: url(../fonts/Roboto-Light.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 300;
+}
+@font-face {
+    src: url(../fonts/Roboto-LightItalic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 300;
+}
+@font-face {
+    src: url(../fonts/Roboto-Regular.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 400;
+}
+@font-face {
+    src: url(../Roboto-Italic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-Medium.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+}
+@font-face {
+    src: url(../fonts/Roboto-MediumItalic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+}
+
+@font-face {
+    src: url(../fonts/Roboto-Bold.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 600;
+}
+@font-face {
+    src: url(../fonts/Roboto-BoldItalic.ttf) format("trueType");
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 600;
+}
+
+
+/* Loading screen */
+.loadscreen-container {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 40vh;
+    flex-wrap: wrap;
+}
+
+.loading-screen h1 {
+    display: block;
+    margin-bottom: 40px;
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+
+@media only screen and (max-width: 380px) {
+    .loading-screen h1 {
+        font-size: 25px;
+        line-height: 1.4;
+    }
+}
+
+progress {
+    width: 240px;
+    height: 15px;
+
+}
+
+.loading-status {
+    display: block;
+    margin-top: 40px;
+    font-family: "Roboto", 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #FFFFFF;
+}
+.success {
+    height: 110px;
+    display: none;
+    margin: auto;
+    margin-top: 4em;
+}
+.success.animate__animated{
+    display: block ;
+}
