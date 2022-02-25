@@ -114,7 +114,7 @@ function maybeRedirectRequest(
 
     if (
         details.url.toLowerCase().includes(resolverDir) ||
-        details.url.toLowerCase().includes("pocket") ||
+        details.url.toLowerCase().includes("rpc") ||
         hostname.includes("githubusercontent.com")
     ) {
         return {};
