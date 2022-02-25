@@ -3,8 +3,15 @@
     "name": "Lume Web3 Gateway",
     "description": "",
     "version": "0.1",
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
     "background": {
-        "scripts": ["background.mjs"],
+        "scripts": [
+            "background.mjs"
+        ],
         "persistent": true
     },
 
