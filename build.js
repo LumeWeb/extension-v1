@@ -9,5 +9,6 @@ require("esbuild").buildSync({
   inject: ["./polyfill.js"],
   bundle: true,
   format: "esm",
-  minify: true,
+  // eslint-disable-next-line no-undef
+  minify: process.env.PRODUCTION ?? false,
 });
