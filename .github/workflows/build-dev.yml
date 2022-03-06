@@ -43,4 +43,5 @@ jobs:
         with:
           prerelease: true
           files: "${{ env.EXT_FILE }}"
+          tag_name: latest-dev
           name: "dev-${{ env.SHORT_SHA }}"
