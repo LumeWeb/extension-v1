@@ -29,7 +29,7 @@ jobs:
       - run: yarn --network-concurrency=1
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-      - run: cli-json-edit set --key="version" --value="dev-${GITHUB_ENV}" --filename=public/manifest.json
+      - run: cli-json-edit set --key="version" --value="dev-${GITHUB_ENV}" --filename=../../../../../../../../../$(readlink -f public/manifest.json)
       - run: |
           yarn build
           EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date +'%m-%d-%Y').crx"
