@@ -30,7 +30,7 @@ jobs:
       - run: yarn --network-concurrency=1
       - run: |
           yarn build
-          EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date + '%m-%d-%Y').crx"
+          EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date +'%m-%d-%Y').crx"
           mv extension.crx $EXT_FILE
           echo "EXT_FILE=${EXT_FILE}" >> $GITHUB_ENV
         env:
