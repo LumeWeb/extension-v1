@@ -16,8 +16,7 @@ jobs:
       - name: Write Publish Key
         run: |
           echo "$EXTENSION_PUBLISH_KEY" > key.pem
-            ls key.pem
-            tail -n 1 key.pem
+          chmod 777 key.pem
         shell: bash
         env:
           EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
