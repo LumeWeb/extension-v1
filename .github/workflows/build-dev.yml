@@ -1,0 +1,41 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build Development Extension
+
+on:
+  push:
+    branches: [master]
+    tags-ignore:
+      - "**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: main
+    steps:
+      - name: Write Publish Key
+        run: |
+          echo "$EXTENSION_PUBLISH_KEY" >> key.pem
+        shell: bash
+        env:
+          EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: "yarn"
+      - run: npm install -g yarn
+      - run: yarn --network-concurrency=1
+      - run: |
+          yarn build
+          EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date + '%m-%d-%Y').crx"
+          mv extension.crx $EXT_FILE
+          echo "EXT_FILE=${EXT_FILE}" >> $GITHUB_ENV
+        env:
+          PRODUCTION: true
+      - name: Publish Build
+        uses: softprops/action-gh-release@v0.1.14
+        with:
+          prerelease: true
+          files: "${{ env.EXT_FILE }}"
