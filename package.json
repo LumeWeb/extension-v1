@@ -26,7 +26,6 @@
     "eslint-config-prettier": "^8.5.0",
     "https-browserify": "^1.0.0",
     "husky": "^7.0.4",
-    "js-sha3": "../js-sha3-browser",
     "path-browserify": "^1.0.1",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
