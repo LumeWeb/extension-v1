@@ -17,7 +17,6 @@ jobs:
         run: |
           echo "$EXTENSION_PUBLISH_KEY" > key.pem
             readlink -f key.pem
-          chmod 777 key.pem
         shell: bash
         env:
           EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
@@ -30,6 +29,8 @@ jobs:
       - run: npm install -g yarn
       - run: yarn --network-concurrency=1
       - run: |
+          echo $PWD
+          ls -a
           yarn build
           EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date +'%m-%d-%Y').crx"
           mv extension.crx $EXT_FILE
