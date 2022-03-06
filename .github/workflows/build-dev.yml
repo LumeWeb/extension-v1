@@ -17,6 +17,7 @@ jobs:
         run: |
           mkdir extension
           echo "$EXTENSION_PUBLISH_KEY" >> extension/key.pem
+            echo $PWD
         shell: bash
         env:
           EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
@@ -35,8 +36,12 @@ jobs:
           echo "EXT_FILE=${EXT_FILE}" >> $GITHUB_ENV
         env:
           PRODUCTION: true
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       - name: Publish Build
         uses: softprops/action-gh-release@v0.1.14
         with:
           prerelease: true
           files: "${{ env.EXT_FILE }}"
+          tag_name: "dev-${{ env.SHORT_SHA }}"
+          name: "dev-${{ env.SHORT_SHA }}"
