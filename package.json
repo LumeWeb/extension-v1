@@ -5,7 +5,7 @@
   "main": "src/background.ts",
   "type": "module",
   "scripts": {
-    "build": "node build.js && crx pack public",
+    "build": "node build.js && crx pack public -p key.pem",
     "format": "prettier 'src/' 'tests/",
     "prepare": "husky install",
     "lint": "tslint --project . && eslint 'public/js'"
