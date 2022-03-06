@@ -28,7 +28,7 @@ jobs:
       - run: npm install -g yarn cli-json-edit
       - run: yarn --network-concurrency=1
       - name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV && cat $GITHUB_ENV
       - run: cli-json-edit set --key="version_name" --value="dev-${GITHUB_ENV}" --filename=../../../../../../../../../$(readlink -f public/manifest.json)
       - run: |
           yarn build
