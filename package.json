@@ -35,8 +35,7 @@
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.5.5",
-    "url": "^0.11.0",
-    "webextension-polyfill": "^0.8.0"
+    "url": "^0.11.0"
   },
   "dependencies": {
     "@lumeweb/resolver": "https://github.com/LumeWeb/resolver.git",
@@ -46,6 +45,7 @@
     "is-ipfs": "^6.0.2",
     "node-process": "^1.0.1",
     "web-ext": "^6.7.0",
+    "webextension-polyfill": "^0.8.0",
     "whatwg-fetch": "^3.6.2"
   },
   "browser": {
