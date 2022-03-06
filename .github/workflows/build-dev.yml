@@ -25,11 +25,11 @@ jobs:
         shell: bash
         env:
           EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
-      - run: npm install -g yarn
+      - run: npm install -g yarn json-edit-cli
       - run: yarn --network-concurrency=1
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-      - run: json-edit-cli set --key="version" --value="dev-${GITHUB_ENV}" --filename=public/manifest.json
+      - run: json-edit-cli set --key="version" --value="dev-${GITHUB_ENV}" --filename=$(readlink -f public/manifest.json)
       - run: |
           yarn build
           EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date +'%m-%d-%Y').crx"
