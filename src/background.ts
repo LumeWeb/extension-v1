@@ -5,8 +5,9 @@ import fetchBuilder, { RequestInitWithRetry } from "fetch-retry";
 import { ipfsPath as isIPFS, ipnsPath as isIPNS } from "is-ipfs";
 import {
   isIp,
+  normalizeDomain,
   startsWithSkylinkRegExp,
-} from "@lumeweb/resolver/dist/esm/lib/util";
+} from "@lumeweb/resolver";
 // import OnBeforeRequestDetailsType = WebRequest.OnBeforeRequestDetailsType;
 // import BlockingResponse = WebRequest.BlockingResponse;
 // import OnBeforeSendHeadersDetailsType = WebRequest.OnBeforeSendHeadersDetailsType;
@@ -43,12 +44,17 @@ function maybeInjectContentHeader(
   // @ts-ignore
 ): BlockingResponse {
   const originalUrl = new URL(details.url);
-  const hostname = originalUrl.hostname;
+  const hostname = normalizeDomain(originalUrl.hostname);
   // @ts-ignore
   const headers: HttpHeaders = [];
 
   if (hostname in dnsCache) {
     const contentPath: string = dnsCache[hostname];
+
+    if (isIp(contentPath)) {
+      return {};
+    }
+
     let contentHash: string = contentPath;
     if (contentPath.includes("://")) {
       contentHash = contentPath.split("://").pop() as string;
@@ -96,7 +102,7 @@ function maybeRedirectRequest(
   // @ts-ignore
 ): BlockingResponse {
   const originalUrl = new URL(details.url);
-  const hostname = originalUrl.hostname;
+  const hostname = normalizeDomain(originalUrl.hostname);
 
   const port = originalUrl.protocol === "https:" ? "443" : "80";
   const access = originalUrl.protocol === "https:" ? "HTTPS" : "PROXY";
@@ -129,24 +135,41 @@ function maybeRedirectRequest(
     return { redirectUrl: resolverPageUrl.toString() };
   }
 
+  let script;
+  const target = dnsCache[hostname];
   const portal = resolver.getPortal();
 
-  const config = {
-    mode: "pac_script",
-    pacScript: {
-      data: `function FindProxyForURL(url, host) {
+  if (isIp(target)) {
+    script = `function FindProxyForURL(url, host) {
+  if ('${portal}' === host){ return 'DIRECT';}
+  if (host=== '${hostname}'){
+    return '${access} ${target}:${port}';}
+  return 'DIRECT';
+}`;
+  } else {
+    script = `function FindProxyForURL(url, host) {
   if ('${portal}' === host){ return 'DIRECT';}
   if (host=== '${hostname}'){
     return '${access} ${portal}:${port}';}
   return 'DIRECT';
-}`,
+}`;
+  }
+
+  const config = {
+    mode: "pac_script",
+    pacScript: {
+      data: script,
     },
   };
 
   browser.proxy.settings.set({ value: config, scope: "regular" });
 
-  if (isIp(dnsCache[hostname]) && "https:" === originalUrl.protocol) {
+  if (!isIp(target) && "https:" === originalUrl.protocol) {
     originalUrl.protocol = "http:";
+    return { redirectUrl: originalUrl.toString() };
+  }
+  if (hostname !== originalUrl.hostname) {
+    originalUrl.hostname = hostname;
     return { redirectUrl: originalUrl.toString() };
   }
 
@@ -162,7 +185,7 @@ async function handleCommunication(data: { action: string; url: string }) {
     return;
   }
   const originalUrl = new URL(data.url);
-  const hostname = originalUrl.hostname;
+  const hostname = normalizeDomain(originalUrl.hostname);
 
   let target;
   try {
@@ -174,7 +197,9 @@ async function handleCommunication(data: { action: string; url: string }) {
   }
 
   if (target) {
-    target = target as string;
+    if (Array.isArray(target)) {
+      target = target.pop();
+    }
 
     let valid = false;
     let type;
@@ -189,9 +214,7 @@ async function handleCommunication(data: { action: string; url: string }) {
     }
 
     if (valid) {
-      if ("content" === type) {
-        dnsCache[hostname] = target;
-      }
+      dnsCache[hostname] = target;
       return target;
     }
   }
