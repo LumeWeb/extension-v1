@@ -20,6 +20,7 @@
     "bower": "^1.8.13",
     "buffer-browserify": "^0.2.5",
     "buffer-fill": "^1.0.0",
+    "cli-json-edit": "^0.0.14",
     "crypto-browserify": "^3.12.0",
     "esbuild": "^0.14.18",
     "eslint": "^8.10.0",

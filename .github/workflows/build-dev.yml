@@ -27,6 +27,9 @@ jobs:
           EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
       - run: npm install -g yarn
       - run: yarn --network-concurrency=1
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      - run: json-edit-cli set --key="version" --value="dev-${GITHUB_ENV}" --filename=public/manifest.json
       - run: |
           yarn build
           EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date +'%m-%d-%Y').crx"
@@ -34,8 +37,6 @@ jobs:
           echo "EXT_FILE=${EXT_FILE}" >> $GITHUB_ENV
         env:
           PRODUCTION: true
-      - name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       - name: Publish Build
         uses: softprops/action-gh-release@v0.1.14
         with:
