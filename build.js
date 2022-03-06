@@ -10,5 +10,5 @@ require("esbuild").buildSync({
   bundle: true,
   format: "esm",
   // eslint-disable-next-line no-undef
-  minify: process.env.PRODUCTION ?? false,
+  minify: Boolean(process.env.PRODUCTION) ?? false,
 });
