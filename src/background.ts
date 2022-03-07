@@ -1,13 +1,13 @@
 import browser, { runtime } from "webextension-polyfill";
-import resolver from "@lumeweb/resolver";
-import "whatwg-fetch";
-import fetchBuilder, { RequestInitWithRetry } from "fetch-retry";
-import { ipfsPath as isIPFS, ipnsPath as isIPNS } from "is-ipfs";
-import {
+import resolver, {
+  isDomain,
   isIp,
   normalizeDomain,
   startsWithSkylinkRegExp,
 } from "@lumeweb/resolver";
+import "whatwg-fetch";
+import fetchBuilder, { RequestInitWithRetry } from "fetch-retry";
+import { ipfsPath as isIPFS, ipnsPath as isIPNS } from "is-ipfs";
 // import OnBeforeRequestDetailsType = WebRequest.OnBeforeRequestDetailsType;
 // import BlockingResponse = WebRequest.BlockingResponse;
 // import OnBeforeSendHeadersDetailsType = WebRequest.OnBeforeSendHeadersDetailsType;
@@ -139,7 +139,7 @@ function maybeRedirectRequest(
   const target = dnsCache[hostname];
   const portal = resolver.getPortal();
 
-  if (isIp(target)) {
+  if (isIp(target) || isDomain(target)) {
     script = `function FindProxyForURL(url, host) {
   if ('${portal}' === host){ return 'DIRECT';}
   if (host=== '${hostname}'){
@@ -209,8 +209,9 @@ async function handleCommunication(data: { action: string; url: string }) {
       type = "content";
     }
 
-    if (isIp(target)) {
+    if (isIp(target) || isDomain(target)) {
       valid = true;
+      target = normalizeDomain(target);
     }
 
     if (valid) {

@@ -514,7 +514,7 @@
 
 "@lumeweb/resolver@https://github.com/LumeWeb/resolver.git":
   version "0.1.0"
-  resolved "https://github.com/LumeWeb/resolver.git#e2a70a45cf6847720cfa1072fe83b944d7e439c4"
+  resolved "https://github.com/LumeWeb/resolver.git#98fa0f0b97983b3a0404c6251b1aa94a2ba1a995"
   dependencies:
     "@lumeweb/ensjs" "^2.1.1"
     "@lumeweb/hs-client" "https://github.com/LumeWeb/hs-client.git"
@@ -528,8 +528,10 @@
     skynet-js "4.0.24-beta"
     ts-node "^10.6.0"
 
-"@lumeweb/safe-buffer@file:../safe-buffer":
+"@lumeweb/safe-buffer@^5.2.1":
   version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@lumeweb/safe-buffer/-/safe-buffer-5.2.1.tgz#19349a464cd042e285cd3a842dea82cd106ea72c"
+  integrity sha512-t/pBcz2QYyI6R/ApNi/+lbaG1EdwXjVqUj2Pc/oFHCccNfVgg1yP3Smqy9Sinc7+8jF0+YEQDbyRxU1vlgpKYw==
 
 "@lumeweb/skynet-js@^4.0.21-beta":
   version "4.0.21-beta"
