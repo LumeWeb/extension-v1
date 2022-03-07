@@ -514,11 +514,12 @@
 
 "@lumeweb/resolver@https://github.com/LumeWeb/resolver.git":
   version "0.1.0"
-  resolved "https://github.com/LumeWeb/resolver.git#98fa0f0b97983b3a0404c6251b1aa94a2ba1a995"
+  resolved "https://github.com/LumeWeb/resolver.git#3369f7e2fcbb1f8f2035346faf69f479845f6466"
   dependencies:
     "@lumeweb/ensjs" "^2.1.1"
     "@lumeweb/hs-client" "https://github.com/LumeWeb/hs-client.git"
     "@lumeweb/skynet-js" "^4.0.21-beta"
+    "@lumeweb/tld-enum" "https://github.com/LumeWeb/list-of-top-level-domains"
     base32-decode "^1.0.0"
     base64-js "^1.5.1"
     brq "^0.1.8"
@@ -555,6 +556,10 @@
     tweetnacl "^1.0.3"
     url-join "^4.0.1"
     url-parse "^1.5.1"
+
+"@lumeweb/tld-enum@https://github.com/LumeWeb/list-of-top-level-domains":
+  version "2.0.7"
+  resolved "https://github.com/LumeWeb/list-of-top-level-domains#ce800542c0b383fd56e2d0701aa8e07e0e55dc4d"
 
 "@mdn/browser-compat-data@4.1.6":
   version "4.1.6"
