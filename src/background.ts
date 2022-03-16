@@ -8,6 +8,10 @@ import resolver, {
 import "whatwg-fetch";
 import fetchBuilder, { RequestInitWithRetry } from "fetch-retry";
 import { ipfsPath as isIPFS, ipnsPath as isIPNS } from "is-ipfs";
+// @ts-ignore
+import tldEnum from "@lumeweb/tld-enum";
+
+tldEnum.list.push("localhost");
 // import OnBeforeRequestDetailsType = WebRequest.OnBeforeRequestDetailsType;
 // import BlockingResponse = WebRequest.BlockingResponse;
 // import OnBeforeSendHeadersDetailsType = WebRequest.OnBeforeSendHeadersDetailsType;
@@ -30,7 +34,6 @@ browser.webRequest.onBeforeSendHeaders.addListener(
   ["blocking", "requestHeaders"]
 );
 
-browser.runtime.onInstalled.addListener(setupExtension);
 browser.runtime.onMessage.addListener(handleCommunication);
 
 const dnsCache: { [domain: string]: string } = {};
@@ -111,7 +114,7 @@ function maybeRedirectRequest(
     ? hostname.split(".")[hostname.split(".").length - 1]
     : hostname;
 
-  if (tldList.includes(tld)) {
+  if (tldEnum.list.includes(tld)) {
     return {};
   }
 
@@ -219,28 +222,6 @@ async function handleCommunication(data: { action: string; url: string }) {
       return target;
     }
   }
-}
-
-// @ts-ignore
-async function setupExtension(details: OnInstalledDetailsType) {
-  downloadTlds();
-}
-
-async function downloadTlds() {
-  // @ts-ignore
-  const fetch = getFetch();
-
-  if (tldList.length) {
-    return;
-  }
-
-  const list = await fetch(
-    "https://raw.githubusercontent.com/LumeWeb/list-of-top-level-domains/master/formats/json/tld-list.json",
-    { mode: "no-cors" }
-  );
-
-  tldList = JSON.parse(await list.text());
-  tldList.push("localhost");
 }
 
 function getFetch(): (
