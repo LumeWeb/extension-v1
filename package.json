@@ -5,7 +5,7 @@
   "main": "src/background.ts",
   "type": "module",
   "scripts": {
-    "build": "node build.js && crx pack public -p key.pem",
+    "build": "rimraf node_modules/@types/web && node build.js && crx pack public -p key.pem",
     "format": "prettier 'src/' 'tests/",
     "prepare": "husky install",
     "lint": "tslint --project . && eslint 'public/js'"
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@lumeweb/js-sha3-browser": "^0.8.1",
-    "@lumeweb/resolver": "https://github.com/LumeWeb/resolver.git",
+    "@lumeweb/resolver": "https://github.com/LumeWeb/resolver.git#gundb",
     "@lumeweb/tld-enum": "https://github.com/LumeWeb/list-of-top-level-domains.git",
     "buffer-browserify": "^0.2.5",
     "crx": "^5.0.1",
@@ -46,6 +46,7 @@
     "fetch-retry": "^5.0.1",
     "is-ipfs": "^6.0.2",
     "node-process": "^1.0.1",
+    "timers-browserify": "^2.0.12",
     "web-ext": "^6.7.0",
     "webextension-polyfill": "^0.8.0",
     "whatwg-fetch": "^3.6.2"
@@ -58,6 +59,7 @@
     "assert": "assert",
     "js-sha3": "@lumeweb/js-sha3-browser",
     "randombytes": "@lumeweb/randombytes-browser",
-    "safe-buffer": "@lumeweb/safe-buffer"
+    "safe-buffer": "@lumeweb/safe-buffer",
+    "timers": "timers-browserify"
   }
 }
