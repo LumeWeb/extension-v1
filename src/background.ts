@@ -38,9 +38,12 @@ browser.webRequest.onBeforeSendHeaders.addListener(
 browser.runtime.onMessage.addListener(handleCommunication);
 
 const dnsCache: { [domain: string]: string } = {};
-let tldList: string[] = [];
 
-resolver.registerPortal("skynet.derrickhammer.com");
+resolver.registerPortal(
+  "skynet.derrickhammer.com",
+  ["dns", "registry", "download"],
+  "0odMB49AQllK7aSqJiDrv9OUCW-tQGiecFVROwdBTUY.v3KCBG8oguJgfT050iMA42QRNkiqlqslSs0Xb2-3iU8"
+);
 
 function maybeInjectContentHeader(
   // @ts-ignore
