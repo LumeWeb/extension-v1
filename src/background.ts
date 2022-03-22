@@ -4,6 +4,7 @@ import resolver, {
   isIp,
   normalizeDomain,
   startsWithSkylinkRegExp,
+  Portal,
 } from "@lumeweb/resolver";
 import "whatwg-fetch";
 import fetchBuilder, { RequestInitWithRetry } from "fetch-retry";
@@ -140,18 +141,22 @@ function maybeRedirectRequest(
 
   let script;
   const target = dnsCache[hostname];
-  const portal = resolver.getPortal();
+  const portal: Portal = resolver.getRandomPortal("download") as Portal;
+
+  if (!portal) {
+    return {};
+  }
 
   if (isIp(target) || isDomain(target)) {
     script = `function FindProxyForURL(url, host) {
-  if ('${portal}' === host){ return 'DIRECT';}
+  if ('${portal.host}' === host){ return 'DIRECT';}
   if (host=== '${hostname}'){
     return '${access} ${target}:${port}';}
   return 'DIRECT';
 }`;
   } else {
     script = `function FindProxyForURL(url, host) {
-  if ('${portal}' === host){ return 'DIRECT';}
+  if ('${portal.host}' === host){ return 'DIRECT';}
   if (host=== '${hostname}'){
     return '${access} ${portal}:${port}';}
   return 'DIRECT';
