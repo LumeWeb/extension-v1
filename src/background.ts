@@ -161,7 +161,7 @@ function maybeRedirectRequest(
     script = `function FindProxyForURL(url, host) {
   if ('${portal.host}' === host){ return 'DIRECT';}
   if (host=== '${hostname}'){
-    return '${access} ${portal}:${port}';}
+    return '${access} ${portal.host}:${port}';}
   return 'DIRECT';
 }`;
   }
