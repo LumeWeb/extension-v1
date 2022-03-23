@@ -36,6 +36,15 @@ browser.webRequest.onBeforeSendHeaders.addListener(
 );
 
 browser.runtime.onMessage.addListener(handleCommunication);
+browser.tabs.onUpdated.addListener(updateMenus);
+// @ts-ignore
+browser.contextMenus.onClicked.addListener(handleMenus);
+
+browser.contextMenus.create({
+  enabled: true,
+  id: "clear",
+  title: "Clear DNS Cache",
+});
 
 const dnsCache: { [domain: string]: string } = {};
 
@@ -187,7 +196,11 @@ function maybeRedirectRequest(
   return {};
 }
 
-async function handleCommunication(data: { action: string; url: string }) {
+async function handleCommunication(data: {
+  action: string;
+  url: string;
+  force?: boolean;
+}) {
   if ("resolve" === data.action) {
     if (!data.url || data.url.length === 0) {
       return false;
@@ -198,9 +211,11 @@ async function handleCommunication(data: { action: string; url: string }) {
   const originalUrl = new URL(data.url);
   const hostname = normalizeDomain(originalUrl.hostname);
 
+  const force = data.force ?? false;
+
   let target;
   try {
-    target = await resolver.resolve(hostname);
+    target = await resolver.resolve(hostname, {}, force);
   } catch (e) {
     // tslint:disable-next-line:no-console
     console.log(e);
@@ -213,11 +228,9 @@ async function handleCommunication(data: { action: string; url: string }) {
     }
 
     let valid = false;
-    let type;
 
     if (getContentType(target)) {
       valid = true;
-      type = "content";
     }
 
     if (isIp(target) || isDomain(target)) {
@@ -229,6 +242,34 @@ async function handleCommunication(data: { action: string; url: string }) {
       dnsCache[hostname] = target;
       return target;
     }
+  }
+}
+
+async function updateMenus(
+  tabId: number,
+  changeInfo: { [key: string]: any },
+  tab: { [key: string]: any }
+) {
+  if (!(tab && tab.active) || !(tab.url && tab.url.trim().length)) {
+    return;
+  }
+
+  const url = new URL(tab.url.trim());
+
+  browser.contextMenus.update("clear", { visible: url.host in dnsCache });
+}
+
+async function handleMenus(
+  info: { [key: string]: any },
+  tab: { [key: string]: any }
+) {
+  if (info.menuItemId === "clear") {
+    const resolverPage = runtime.getURL("/dns.html");
+    const resolverPageUrl = new URL(resolverPage);
+    resolverPageUrl.searchParams.append("url", encodeURI(tab.url.toString()));
+    resolverPageUrl.searchParams.append("force", "1");
+
+    browser.tabs.update(tab.id, { url: resolverPageUrl.toString() });
   }
 }
 

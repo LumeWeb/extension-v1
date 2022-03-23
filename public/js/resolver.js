@@ -1,9 +1,12 @@
 (async function () {
-  let targetUrl = new URL(decodeURI(window.location)).searchParams.get("url");
+  const params = new URL(decodeURI(window.location)).searchParams;
+  const targetUrl = params.get("url");
+  const force = params.get("force") === "1" ?? false;
   // eslint-disable-next-line no-undef
   let response = await browser.runtime.sendMessage(undefined, {
     action: "resolve",
-    url: new URL(decodeURI(window.location)).searchParams.get("url"),
+    url: targetUrl,
+    force,
   });
 
   let location;
