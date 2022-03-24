@@ -15,6 +15,7 @@
   "devDependencies": {
     "@lumeweb/randombytes-browser": "^2.1.2",
     "@lumeweb/safe-buffer": "^5.2.1",
+    "@types/uuid": "^8.3.4",
     "@types/webextension-polyfill": "^0.8.2",
     "assert": "^2.0.0",
     "bower": "^1.8.13",
@@ -40,6 +41,7 @@
     "@lumeweb/js-sha3-browser": "^0.8.1",
     "@lumeweb/resolver": "https://github.com/LumeWeb/resolver.git#gundb",
     "@lumeweb/tld-enum": "https://github.com/LumeWeb/list-of-top-level-domains.git",
+    "@lumeweb/webextension-polyfill": "https://github.com/LumeWeb/webextension-polyfill.git",
     "buffer-browserify": "^0.2.5",
     "crx": "^5.0.1",
     "events": "^3.3.0",
@@ -47,8 +49,8 @@
     "is-ipfs": "^6.0.2",
     "node-process": "^1.0.1",
     "timers-browserify": "^2.0.12",
+    "uuid": "^8.3.2",
     "web-ext": "^6.7.0",
-    "webextension-polyfill": "^0.8.0",
     "whatwg-fetch": "^3.6.2"
   },
   "browser": {

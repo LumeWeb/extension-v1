@@ -472,14 +472,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@lumeweb/bcurl@https://github.com/LumeWeb/bcurl.git":
-  version "0.1.11"
-  resolved "https://github.com/LumeWeb/bcurl.git#d6c55007c287eda24bfd7f296a0fa68c04d90f3e"
-  dependencies:
-    brq "~0.1.8"
-    bsert "~0.0.10"
-    bsock "~0.1.9"
-
 "@lumeweb/ensjs@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@lumeweb/ensjs/-/ensjs-2.1.1.tgz#7d41a806a6b3c4862c201b00d082193c4e575e2b"
@@ -500,14 +492,6 @@
   dependencies:
     gun "^0.2020.1236"
 
-"@lumeweb/hs-client@https://github.com/LumeWeb/hs-client.git":
-  version "0.0.11"
-  resolved "https://github.com/LumeWeb/hs-client.git#dcc835d6ec58d3ead76c63e62923cd6764a626c0"
-  dependencies:
-    "@lumeweb/bcurl" "https://github.com/LumeWeb/bcurl.git"
-    bcfg "~0.1.7"
-    bsert "~0.0.10"
-
 "@lumeweb/js-sha3-browser@^0.8.1":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@lumeweb/js-sha3-browser/-/js-sha3-browser-0.8.1.tgz#a77b6d88eb5413dd9b81a9b606df7a19469d7ff3"
@@ -520,7 +504,7 @@
 
 "@lumeweb/resolver@https://github.com/LumeWeb/resolver.git#gundb":
   version "0.1.0"
-  resolved "https://github.com/LumeWeb/resolver.git#1b7be9ad7ea21523b144ac1054172162f3cebcba"
+  resolved "https://github.com/LumeWeb/resolver.git#62aee0f0e734f13165a7dd05caa1d4dc374927ca"
   dependencies:
     "@ethersproject/abstract-provider" "^5.6.0"
     "@ethersproject/abstract-signer" "^5.6.0"
@@ -534,7 +518,6 @@
     "@ethersproject/web" "^5.6.0"
     "@lumeweb/ensjs" "^2.1.1"
     "@lumeweb/gun" "https://github.com/LumeWeb/libgun.git"
-    "@lumeweb/hs-client" "https://github.com/LumeWeb/hs-client.git"
     "@lumeweb/skynet-js" "^4.0.21-beta"
     "@lumeweb/tld-enum" "https://github.com/LumeWeb/list-of-top-level-domains"
     base32-decode "^1.0.0"
@@ -583,7 +566,11 @@
 
 "@lumeweb/tld-enum@https://github.com/LumeWeb/list-of-top-level-domains.git":
   version "2.0.7"
-  resolved "https://github.com/LumeWeb/list-of-top-level-domains.git#ce800542c0b383fd56e2d0701aa8e07e0e55dc4d"
+  resolved "https://github.com/LumeWeb/list-of-top-level-domains.git#ae60882496bb6e12896fe25436370a3bf02df249"
+
+"@lumeweb/webextension-polyfill@https://github.com/LumeWeb/webextension-polyfill.git":
+  version "0.8.0"
+  resolved "https://github.com/LumeWeb/webextension-polyfill.git#14e23759c627854727449e93e3f90540368c8474"
 
 "@mdn/browser-compat-data@4.1.6":
   version "4.1.6"
@@ -703,6 +690,11 @@
   integrity sha512-Da66lEIFeIz9ltsdMZcpQvmrmmoqrfju8pm1BH8WbYjZSwUgCwXLb9C+9XYogwBITnbsSaMdVPb2ekf7TV+03w==
   dependencies:
     "@types/node" "*"
+
+"@types/uuid@^8.3.4":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 "@types/web@^0.0.55":
   version "0.0.55"
@@ -5825,11 +5817,6 @@ webcrypto-core@^1.7.1:
     asn1js "^2.2.0"
     pvtsutils "^1.2.2"
     tslib "^2.3.1"
-
-webextension-polyfill@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.8.0.tgz#f80e9f4b7f81820c420abd6ffbebfa838c60e041"
-  integrity sha512-a19+DzlT6Kp9/UI+mF9XQopeZ+n2ussjhxHJ4/pmIGge9ijCDz7Gn93mNnjpZAk95T4Tae8iHZ6sSf869txqiQ==
 
 whatwg-fetch@^3.6.2:
   version "3.6.2"

@@ -12,7 +12,12 @@
     "scripts": ["background.mjs"],
     "persistent": true
   },
-
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.mjs"]
+    }
+  ],
   "permissions": [
     "webRequest",
     "webRequestBlocking",
@@ -21,5 +26,5 @@
     "contextMenus",
     "<all_urls>"
   ],
-  "web_accessible_resources": ["dns.html", "error.html"]
+  "web_accessible_resources": ["dns.html", "error.html", "content_api.js"]
 }
