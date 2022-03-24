@@ -125,7 +125,7 @@ async function postMessageContentScriptListener(e: MessageEvent) {
   const rpcMessage = data.message as RPCRequest;
 
   const resp = await sendRequest(rpcMessage.method, rpcMessage.data);
-  if (resp) {
+  if (resp !== undefined) {
     window.postMessage({
       id: data.id,
       message: resp,
@@ -154,7 +154,7 @@ function validPostMessageEvent(e: MessageEvent) {
   if (!(data.id && uuid.validate(data.id))) {
     return false;
   }
-  if (!data.message) {
+  if (undefined === data.message) {
     return false;
   }
 
