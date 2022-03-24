@@ -26,11 +26,20 @@ async function updateHandler(
   changeInfo: Tabs.OnUpdatedChangeInfoType,
   tab: Tabs.Tab
 ) {
-  if (!(tab && tab.active) || !(tab.url && tab.url.trim().length)) {
+  let visible = null;
+
+  if (tab && tab.active) {
+    if (!tab.url) {
+      visible = false;
+    } else if (tab.url && tab.url.trim().length) {
+      const url = new URL(tab.url.trim());
+      visible = url.host in dnsCache;
+    }
+  }
+
+  if (null === visible) {
     return;
   }
 
-  const url = new URL(tab.url.trim());
-
-  browser.contextMenus.update("clear", { visible: url.host in dnsCache });
+  browser.contextMenus.update("clear", { visible });
 }
