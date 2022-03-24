@@ -6,7 +6,7 @@
     <title>Failed to process web3 request</title>
     <link rel="stylesheet" href="./css/reset.css" type="text/css" />
     <link rel="stylesheet" href="./css/error.css" type="text/css" />
-    <script type="module" src="./js/error.js"></script>
+    <script type="module" src="./js/error.mjs"></script>
   </head>
   <body>
     <div class="content-container">
@@ -51,6 +51,9 @@
       <div class="action-buttons">
         <a id="back" href="#">
           <button class="btn">Try request again</button>
+        </a>
+        <a id="force_refresh" href="#">
+          <button class="btn">Clear DNS Cache and try request again</button>
         </a>
         <a class="link" href="#">Or read the FAQ!</a>
       </div>

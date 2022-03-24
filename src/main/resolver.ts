@@ -8,9 +8,15 @@ window.addEventListener("lumeWebLoaded", async () => {
   // @ts-ignore
   const response = await window.lume.dns.resolve(targetUrl.hostname, {}, force);
 
-  const location = response
-    ? targetUrl?.toString()
-    : browser.runtime.getURL("/error.html");
+  let location: string;
+
+  if (response) {
+    location = targetUrl?.toString();
+  } else {
+    const errorUrl = new URL(browser.runtime.getURL("/error.html"));
+    errorUrl.searchParams.set("url", targetUrl.toString());
+    location = errorUrl.toString();
+  }
 
   const el = document.getElementById("success");
   el?.classList.add("animate__animated");
