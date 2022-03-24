@@ -33,7 +33,7 @@ async function handler(request: HandlerData): RPCMethodResponse {
     response = response.pop();
   }
 
-  if (!response) {
+  if (typeof response !== "string") {
     return false;
   }
 
