@@ -31,7 +31,7 @@ jobs:
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       - run: cli-json-edit set --key="version_name" --value="dev-${SHORT_SHA}" --filename=../../../../../../../../../$(readlink -f public/manifest.json)
       - run: |
-          yarn build
+          npm run build
           EXT_FILE="lumeweb-extension-${GITHUB_SHA}-$(date +'%m-%d-%Y').crx"
           mv extension.crx $EXT_FILE
           echo "EXT_FILE=${EXT_FILE}" >> $GITHUB_ENV
