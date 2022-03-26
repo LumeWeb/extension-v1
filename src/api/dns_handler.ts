@@ -49,7 +49,7 @@ async function handler(request: HandlerData): RPCMethodResponse {
   }
 
   if (valid) {
-    dnsCache[request.input] = response;
+    dnsCache[input] = response;
     return response;
   }
 
