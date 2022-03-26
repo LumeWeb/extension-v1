@@ -18,15 +18,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          cache: "yarn"
+          cache: "npm"
       - name: Write Publish Key
         run: |
           echo "$EXTENSION_PUBLISH_KEY" > key.pem
         shell: bash
         env:
           EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
-      - run: npm install -g yarn cli-json-edit
-      - run: yarn --network-concurrency=1
+      - run: npm install -g cli-json-edit
+      - run: npm install
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       - run: cli-json-edit set --key="version_name" --value="dev-${SHORT_SHA}" --filename=../../../../../../../../../$(readlink -f public/manifest.json)
