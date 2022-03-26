@@ -565,7 +565,7 @@
   "version" "2.0.7"
 
 "@lumeweb/webextension-polyfill@github:LumeWeb/webextension-polyfill":
-  "resolved" "git+ssh://git@github.com/LumeWeb/webextension-polyfill.git#71c9dc2108d25ae92ac12d3e22718063c568e60c"
+  "resolved" "git+ssh://git@github.com/LumeWeb/webextension-polyfill.git#b39d81d20c78fd1872ada83369946e675197ed41"
   "version" "0.8.0"
 
 "@mdn/browser-compat-data@4.1.6":
