@@ -1241,7 +1241,7 @@
     },
     "node_modules/@lumeweb/webextension-polyfill": {
       "version": "0.8.0",
-      "resolved": "git+ssh://git@github.com/LumeWeb/webextension-polyfill.git#5ab05945cd7cb7862b3f92eab4fb3ee29d6937d1",
+      "resolved": "git+ssh://git@github.com/LumeWeb/webextension-polyfill.git#22ca59440232fbacf19402d3858b6a4f8c1d6bab",
       "license": "MPL-2.0"
     },
     "node_modules/@mdn/browser-compat-data": {
@@ -10609,7 +10609,7 @@
       "from": "@lumeweb/tld-enum@https://github.com/LumeWeb/list-of-top-level-domains.git"
     },
     "@lumeweb/webextension-polyfill": {
-      "version": "git+ssh://git@github.com/LumeWeb/webextension-polyfill.git#5ab05945cd7cb7862b3f92eab4fb3ee29d6937d1",
+      "version": "git+ssh://git@github.com/LumeWeb/webextension-polyfill.git#22ca59440232fbacf19402d3858b6a4f8c1d6bab",
       "from": "@lumeweb/webextension-polyfill@github:LumeWeb/webextension-polyfill"
     },
     "@mdn/browser-compat-data": {

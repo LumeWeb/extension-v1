@@ -41,7 +41,7 @@
     "@lumeweb/js-sha3-browser": "^0.8.1",
     "@lumeweb/resolver": "https://github.com/LumeWeb/resolver.git#gundb",
     "@lumeweb/tld-enum": "https://github.com/LumeWeb/list-of-top-level-domains.git",
-    "@lumeweb/webextension-polyfill": "https://github.com/LumeWeb/webextension-polyfill.git",
+    "@lumeweb/webextension-polyfill": "github:LumeWeb/webextension-polyfill",
     "buffer-browserify": "^0.2.5",
     "crx": "^5.0.1",
     "events": "^3.3.0",
