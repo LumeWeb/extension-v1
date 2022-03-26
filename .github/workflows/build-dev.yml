@@ -26,8 +26,8 @@ jobs:
         env:
           EXTENSION_PUBLISH_KEY: ${{ secrets.EXTENSION_PUBLISH_KEY }}
       - run: npm install -g cli-json-edit yarn
-      - run: npm install
       - run: yarn add https://github.com/LumeWeb/webextension-polyfill.git
+      - run: npm install
       - name: Add SHORT_SHA env property with commit short sha
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       - run: cli-json-edit set --key="version_name" --value="dev-${SHORT_SHA}" --filename=../../../../../../../../../$(readlink -f public/manifest.json)
