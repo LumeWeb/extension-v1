@@ -54,7 +54,7 @@ function handler(
 
   let script;
   const target = dnsCache[hostname];
-  const portal: Portal = resolver.getRandomPortal("download") as Portal;
+  const portal: Portal = resolver.getRandomPortal("web3link") as Portal;
 
   if (!portal) {
     return {};
