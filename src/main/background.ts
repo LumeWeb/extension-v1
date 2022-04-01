@@ -8,7 +8,7 @@ import "../hooks/api.js";
 
 tldEnum.list.push("localhost");
 resolver.registerPortal(
-  "skynet.derrickhammer.com",
-  ["dns", "registry", "download"],
-  "0odMB49AQllK7aSqJiDrv9OUCW-tQGiecFVROwdBTUY.v3KCBG8oguJgfT050iMA42QRNkiqlqslSs0Xb2-3iU8"
+  "fileportal.org",
+  ["dns", "registry"],
+  "Omkq3gTKAil75U-p1CeyEoq-pQWFKYH5Z31x9GiQvOM.OLWIuw8_h4o03HtNnc7x_egpxW5Q5LaBK9u-8mI7QNg"
 );
