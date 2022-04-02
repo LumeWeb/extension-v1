@@ -47,8 +47,7 @@ function handler(
 
   if (
     details.url.toLowerCase().includes(resolverDir) ||
-    details.url.toLowerCase().includes("rpc") ||
-    hostname.includes("githubusercontent.com")
+    details.url.toLowerCase().includes("/dns")
   ) {
     return {};
   }
