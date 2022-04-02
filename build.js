@@ -4,12 +4,12 @@ const require = createRequire(import.meta.url);
 const esbuild = require("esbuild");
 const scripts = {
   "src/main/background.ts": {
-    script: "public/background.mjs",
+    script: "public/background.js",
     inject: true,
     format: "esm",
   },
   "src/main/content.ts": {
-    script: "public/content.mjs",
+    script: "public/content.js",
     inject: false,
     format: "esm",
   },
@@ -19,12 +19,12 @@ const scripts = {
     format: "esm",
   },
   "src/main/resolver.ts": {
-    script: "public/js/resolver.mjs",
+    script: "public/js/resolver.js",
     inject: false,
     format: "esm",
   },
   "src/main/error.ts": {
-    script: "public/js/error.mjs",
+    script: "public/js/error.js",
     inject: false,
     format: "esm",
   },
