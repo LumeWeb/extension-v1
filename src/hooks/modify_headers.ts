@@ -41,7 +41,9 @@ function handler(
         value: type,
       });
     }
+
+    return { requestHeaders: headers };
   }
 
-  return { requestHeaders: headers };
+  return {};
 }
