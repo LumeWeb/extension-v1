@@ -26,5 +26,11 @@
     "contextMenus",
     "<all_urls>"
   ],
-  "web_accessible_resources": ["dns.html", "error.html", "content_api.js"]
+  "web_accessible_resources": ["dns.html", "error.html", "content_api.js"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "contact@lumeweb.com",
+      "strict_min_version": "91.1.0"
+    }
+  }
 }
