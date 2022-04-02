@@ -1,21 +1,22 @@
 {
   "manifest_version": 2,
-  "name": "Lume Web3 Gateway",
-  "description": "",
-  "version": "0.1",
+  "name": "Lume Web",
+  "description": "Lume Web is your decentralized gateway into the web3 internet, the web owned and controlled by its users",
+  "version": "0.1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7kIcfXv7nKmWXhd/3psJ4OOQBLhut22Mt3uQdCeqv4Y3lLAol+2JMzehHZy1nCFpOTyZshOvtSY3+WIWaqk3/W/oi1V6PLiuObCO8EoyCrHUX7NNF/Uu0cXU+hOugvG8Qb+pPmmtHBn1kMV8hu/9CVZKQEicB75Fjp+kGZ0M3wRxSc0JAHR3BhWQ71kJbbtACy9x9qTeB8058Sp+xK8ObxwjPa+fBDEwtGCeDtRsSH/o0Z0Ugx5qzgjlPVGnPr4BV2AemayX4OX4t80CRPvS2VECpEBwhyjtSwSjuTvvXEbswL+Ji02Pr6Ao62Pf4iOn4NrP+CWqZ5VOOsKNRTTgaQIDAQAB",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
   },
   "background": {
-    "scripts": ["background.mjs"],
+    "scripts": ["background.js"],
     "persistent": true
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.mjs"]
+      "js": ["content.js"]
     }
   ],
   "permissions": [
