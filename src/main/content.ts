@@ -1,8 +1,8 @@
+// @ts-ignore
 import browser from "@lumeweb/webextension-polyfill";
-import { attachPostMessageContentListener } from "../router.js";
+import { attachPostMessageContentListener } from "../router/content.js";
 
 const scriptUrl = browser.runtime.getURL("content_api.js");
-const extensionContext = new URL(scriptUrl).origin === window.location.origin;
 
 const el = document.createElement("script");
 el.src = scriptUrl;

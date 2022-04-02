@@ -1,4 +1,5 @@
 import { isIp, normalizeDomain } from "@lumeweb/resolver";
+// @ts-ignore
 import browser, { WebRequest } from "@lumeweb/webextension-polyfill";
 import dnsCache from "../cache.js";
 import { getContentType } from "../utils.js";
@@ -28,7 +29,14 @@ function handler(
     if (contentPath.includes("://")) {
       contentHash = contentPath.split("://").pop() as string;
     }
-
+    headers.push({
+      name: "Host",
+      value: hostname,
+    });
+    headers.push({
+      name: "User-Agent",
+      value: navigator.userAgent,
+    });
     headers.push({
       name: "X-Content-Hash",
       value: contentHash,

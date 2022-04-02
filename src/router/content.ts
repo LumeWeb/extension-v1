@@ -1,29 +1,19 @@
+// @ts-ignore
 import browser from "@lumeweb/webextension-polyfill";
 import * as uuid from "uuid";
-const registeredRoutes: {
-  [method: string]: RPCMethod;
-} = {};
-
-const contentPageResponses: { [id: string]: (data: any) => void } = {};
-
-export type RPCMethodResponse = Promise<JSONData | void>;
+import {
+  contentPageResponses,
+  JSONData,
+  RPCMethodResponse,
+  RPCRequest,
+  validPostMessageEvent,
+} from "./shared.js";
 
 type RPCMethod = (request: JSONData) => Promise<RPCMethodResponse>;
 
-type JSONObject = { [key: string]: JSONData };
-
-export type JSONData =
-  | string[]
-  | number[]
-  | string
-  | number
-  | boolean
-  | JSONObject;
-
-export type RPCRequest = {
-  method: string;
-  data: JSONData;
-};
+const registeredRoutes: {
+  [method: string]: RPCMethod;
+} = {};
 
 /*let extensionId: string | null = null;
 
@@ -68,47 +58,12 @@ export async function sendRequest(
   return browser.runtime.sendMessage(browser.runtime.id, request);
 }
 
-async function listenForContentResponse(id: string): Promise<JSONData | void> {
-  return new Promise((resolve) => {
-    contentPageResponses[id] = resolve;
-  });
-}
-
-export async function sendContentRequest(
-  method: string,
-  data: JSONData
-): Promise<JSONData | void> {
-  const request = {
-    id: uuid.v4(),
-    message: {
-      method,
-      data,
-    },
-  };
-
-  window.postMessage(request);
-  return listenForContentResponse(request.id);
-}
-
-export function processContentResponse(id: string, data: JSONData) {
-  if (!contentPageResponses.hasOwnProperty(id)) {
-    return;
-  }
-
-  contentPageResponses[id](data);
-  delete contentPageResponses[id];
-}
-
 export function registerMethod(method: string, func: RPCMethod): void {
   registeredRoutes[method] = func;
 }
 
 export function attachPostMessageContentListener() {
   window.addEventListener("message", postMessageContentScriptListener);
-}
-
-export function attachPostMessageWebPageListener() {
-  window.addEventListener("message", postMessageWebPageListener);
 }
 
 async function postMessageContentScriptListener(e: MessageEvent) {
@@ -132,35 +87,4 @@ async function postMessageContentScriptListener(e: MessageEvent) {
       reply: true,
     });
   }
-}
-
-function postMessageWebPageListener(e: MessageEvent) {
-  if (!validPostMessageEvent(e)) {
-    return;
-  }
-
-  const data = e.data;
-
-  if (!data.reply) {
-    return;
-  }
-
-  processContentResponse(data.id, data.message);
-}
-
-function validPostMessageEvent(e: MessageEvent) {
-  const data = e.data;
-
-  if (!(data.id && uuid.validate(data.id))) {
-    return false;
-  }
-  if (undefined === data.message) {
-    return false;
-  }
-
-  if (e.source !== window) {
-    return false;
-  }
-
-  return true;
 }

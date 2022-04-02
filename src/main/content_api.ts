@@ -1,8 +1,6 @@
 import { resolve } from "../api/dns.js";
-import {
-  attachPostMessageContentListener,
-  attachPostMessageWebPageListener,
-} from "../router.js";
+import { attachPostMessageWebPageListener } from "../router/browser.js";
+
 // @ts-ignore
 window.lume = {
   dns: {

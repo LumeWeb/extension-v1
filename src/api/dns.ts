@@ -1,4 +1,4 @@
-import { sendContentRequest } from "../router.js";
+import { sendContentRequest } from "../router/browser.js";
 
 export async function resolve(
   input: string,

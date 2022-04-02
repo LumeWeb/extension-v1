@@ -1,4 +1,5 @@
-import { JSONData, registerMethod, RPCMethodResponse } from "../router.js";
+import { JSONData, RPCMethodResponse } from "../router/shared.js";
+import { registerMethod } from "../router/content.js";
 import resolver, { isDomain, isIp, normalizeDomain } from "@lumeweb/resolver";
 import { getContentType } from "../utils.js";
 import dnsCache from "../cache.js";

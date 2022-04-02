@@ -1,5 +1,7 @@
+// @ts-ignore
 import browser, { Runtime } from "@lumeweb/webextension-polyfill";
-import { receiveRequest, RPCRequest } from "../router.js";
+import { receiveRequest } from "../router/content.js";
+import { RPCRequest } from "../router/shared.js";
 import "../api/dns_handler.js";
 
 browser.runtime.onMessage.addListener(handler);

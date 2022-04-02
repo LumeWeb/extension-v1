@@ -1,4 +1,9 @@
-import browser, { runtime, WebRequest } from "@lumeweb/webextension-polyfill";
+import browser, {
+  runtime,
+  WebRequest,
+  Proxy,
+  // @ts-ignore
+} from "@lumeweb/webextension-polyfill";
 import resolver, {
   isDomain,
   isIp,
@@ -8,6 +13,11 @@ import resolver, {
 
 import tldEnum from "@lumeweb/tld-enum";
 import dnsCache from "../cache";
+const isFirefox = typeof browser.proxy.onRequest.addListener !== "undefined";
+
+if (isFirefox) {
+  browser.proxy.onRequest.addListener(proxyHandler, { urls: ["<all_urls>"] });
+}
 
 browser.webRequest.onBeforeRequest.addListener(
   handler,
@@ -60,30 +70,32 @@ function handler(
     return {};
   }
 
-  if (isIp(target) || isDomain(target)) {
-    script = `function FindProxyForURL(url, host) {
+  if (!isFirefox) {
+    if (isIp(target) || isDomain(target)) {
+      script = `function FindProxyForURL(url, host) {
   if ('${portal.host}' === host){ return 'DIRECT';}
   if (host=== '${hostname}'){
     return '${access} ${target}:${port}';}
   return 'DIRECT';
 }`;
-  } else {
-    script = `function FindProxyForURL(url, host) {
+    } else {
+      script = `function FindProxyForURL(url, host) {
   if ('${portal.host}' === host){ return 'DIRECT';}
   if (host=== '${hostname}'){
     return '${access} ${portal.host}:${port}';}
   return 'DIRECT';
 }`;
+    }
+
+    const config = {
+      mode: "pac_script",
+      pacScript: {
+        data: script,
+      },
+    };
+
+    browser.proxy.settings.set({ value: config, scope: "regular" });
   }
-
-  const config = {
-    mode: "pac_script",
-    pacScript: {
-      data: script,
-    },
-  };
-
-  browser.proxy.settings.set({ value: config, scope: "regular" });
 
   if (!isIp(target) && "https:" === originalUrl.protocol) {
     originalUrl.protocol = "http:";
@@ -95,4 +107,38 @@ function handler(
   }
 
   return {};
+}
+
+function proxyHandler(details: Proxy.OnRequestDetailsType) {
+  const originalUrl = new URL(details.url);
+  const hostname = normalizeDomain(originalUrl.hostname);
+
+  const port = "80";
+  const access = "HTTP";
+
+  const tld = hostname.includes(".")
+    ? hostname.split(".")[hostname.split(".").length - 1]
+    : hostname;
+
+  if (tldEnum.list.includes(tld)) {
+    return { type: "direct" };
+  }
+
+  if (hostname in dnsCache) {
+    const target = dnsCache[hostname];
+
+    if (isIp(target) || isDomain(target)) {
+      return { type: access, port, host: target };
+    }
+
+    const portal: Portal = resolver.getRandomPortal("web3link") as Portal;
+
+    if (!portal) {
+      return { type: "direct" };
+    }
+
+    return { type: access, port, host: portal.host };
+  }
+
+  return { type: "direct" };
 }
