@@ -42,6 +42,10 @@ function handler(
     return {};
   }
 
+  if (!isDomain(hostname) && isIp(hostname)) {
+    return {};
+  }
+
   const resolverDir = runtime.getURL("/");
   const resolverPage = runtime.getURL("/dns.html");
 
