@@ -13,7 +13,7 @@ import resolver, {
 
 import tldEnum from "@lumeweb/tld-enum";
 import dnsCache from "../cache";
-const isFirefox = typeof browser.proxy.onRequest.addListener !== "undefined";
+const isFirefox = typeof browser?.proxy?.onRequest?.addListener !== "undefined";
 
 if (isFirefox) {
   browser.proxy.onRequest.addListener(proxyHandler, { urls: ["<all_urls>"] });
