@@ -523,7 +523,7 @@
 
 "@lumeweb/resolver@https://github.com/LumeWeb/resolver.git":
   version "0.1.0"
-  resolved "https://github.com/LumeWeb/resolver.git#bdccd825cb9bb68f82610ee5e5476dda1f6b2b3c"
+  resolved "https://github.com/LumeWeb/resolver.git#c6d29817a69d6f8a5645ffad94c8c82ea3ce3e6a"
   dependencies:
     "@bonfida/spl-name-service" "^0.1.31"
     "@ethersproject/abstract-provider" "^5.6.0"
