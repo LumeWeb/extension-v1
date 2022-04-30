@@ -1,8 +1,9 @@
 import { JSONData, RPCMethodResponse } from "../router/shared.js";
 import { registerMethod } from "../router/content.js";
-import resolver, { isDomain, isIp, normalizeDomain } from "@lumeweb/resolver";
+import { isDomain, isIp, normalizeDomain } from "@lumeweb/resolver";
 import { getContentType } from "../utils.js";
 import dnsCache from "../cache.js";
+import { resolver } from "../common.js";
 
 // @ts-ignore
 registerMethod("dns.resolve", handler);

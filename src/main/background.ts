@@ -1,4 +1,4 @@
-import resolver from "@lumeweb/resolver";
+import { resolver } from "../common.js";
 import tldEnum from "@lumeweb/tld-enum";
 import "whatwg-fetch";
 import "../hooks/menu.js";
@@ -8,8 +8,7 @@ import "../hooks/api.js";
 
 tldEnum.list.push("localhost");
 resolver.registerPortal(
-  "fileportal.org",
-  ["dns", "registry"],
-  "Omkq3gTKAil75U-p1CeyEoq-pQWFKYH5Z31x9GiQvOM.OLWIuw8_h4o03HtNnc7x_egpxW5Q5LaBK9u-8mI7QNg"
+  "skynet.derrickhammer.com",
+  ["dns", "registry", "web3link"],
+  "0odMB49AQllK7aSqJiDrv9OUCW-tQGiecFVROwdBTUY.v3KCBG8oguJgfT050iMA42QRNkiqlqslSs0Xb2-3iU8"
 );
-resolver.registerPortal("direct.fileportal.org", ["web3link"]);
