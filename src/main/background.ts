@@ -5,19 +5,16 @@ import "../hooks/menu.js";
 import "../hooks/modify_headers.js";
 import "../hooks/redirect_proxy.js";
 import "../hooks/api.js";
+import { JSONPortalList } from "@lumeweb/resolver";
 
 tldEnum.list.push("localhost");
 (async () => {
-  resolver.registerPortalsFromJson({
-    "fileportal.org": {
-      supports: ["dns", "registry"],
-      pubkey:
-        "Omkq3gTKAil75U-p1CeyEoq-pQWFKYH5Z31x9GiQvOM.OLWIuw8_h4o03HtNnc7x_egpxW5Q5LaBK9u-8mI7QNg",
-    },
-    "direct.fileportal.org": {
-      supports: ["web3link"],
-    },
-  });
+  const portals: JSONPortalList = await (
+    await fetch(
+      "https://fileportal.org/AAAX9dhosKlz909-949eOExfsJMLijz_VEOjGVhdwi8lKQ"
+    )
+  ).json();
+  resolver.registerPortalsFromJson(portals);
 
   resolver.connect();
 })();
