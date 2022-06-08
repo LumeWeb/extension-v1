@@ -18,7 +18,7 @@ const portalListOwner =
  TODO: Use kernel code to use many different portals and not hard code a portal
  */
 let portalConnection: WSReconnect;
-const portalClient = new SkynetClient("https://fileportal.org");
+const portalClient = new SkynetClient("https://web3portal.com");
 
 async function fetchPortals() {
   const portals: JSONPortalList = (
