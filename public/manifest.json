@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Lume Web",
   "description": "Lume Web is your decentralized gateway into the web3 internet, the web owned and controlled by its users",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
