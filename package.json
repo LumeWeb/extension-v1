@@ -1,6 +1,6 @@
 {
   "name": "@lumeweb/extension",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The browser extension that enables a gateway into web3",
   "main": "src/background.ts",
   "type": "module",
