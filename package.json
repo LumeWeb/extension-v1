@@ -1,6 +1,6 @@
 {
   "name": "@lumeweb/extension",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "The browser extension that enables a gateway into web3",
   "main": "src/background.ts",
   "type": "module",
@@ -13,7 +13,7 @@
   "author": "Derrick Hammer",
   "license": "MIT",
   "devDependencies": {
-    "@lumeweb/randombytes-browser": "^2.1.2",
+    "@lumeweb/randombytes-browser": "^2.1.3",
     "@lumeweb/safe-buffer": "^5.2.1",
     "@types/uuid": "^8.3.4",
     "@types/webextension-polyfill": "^0.8.2",
@@ -27,6 +27,7 @@
     "eslint-config-prettier": "^8.5.0",
     "https-browserify": "^1.0.0",
     "husky": "^7.0.4",
+    "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
@@ -39,7 +40,7 @@
   },
   "dependencies": {
     "@lumeweb/js-sha3-browser": "^0.8.1",
-    "@lumeweb/resolver": "^0.2.0",
+    "@lumeweb/resolver": "^0.2.1",
     "@lumeweb/skynet-js": "^4.0.21-beta",
     "@lumeweb/tld-enum": "https://github.com/LumeWeb/list-of-top-level-domains.git",
     "@lumeweb/webextension-polyfill": "github:LumeWeb/webextension-polyfill",
@@ -63,6 +64,7 @@
     "js-sha3": "@lumeweb/js-sha3-browser",
     "randombytes": "@lumeweb/randombytes-browser",
     "safe-buffer": "@lumeweb/safe-buffer",
-    "timers": "timers-browserify"
+    "timers": "timers-browserify",
+    "os": "os-browserify"
   }
 }
