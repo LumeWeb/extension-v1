@@ -31,7 +31,7 @@ async function fetchPortals() {
 
 export function setupPortalListSubscription() {
   portalConnection = new WSReconnect(
-    "wss://fileportal.org/skynet/registry/subscription"
+    "wss://web3portal.com/skynet/registry/subscription"
   );
   portalConnection.on("connect", () => {
     portalConnection.send(
