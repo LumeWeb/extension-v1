@@ -4,9 +4,10 @@ const require = createRequire(import.meta.url);
 const esbuild = require("esbuild");
 const scripts = {
   "src/main/background.ts": {
-    script: "public/background.js",
+    outdir: "public/background",
     inject: true,
     format: "esm",
+    splitting: true,
   },
   "src/main/content.ts": {
     script: "public/content.js",
@@ -35,10 +36,12 @@ Object.keys(scripts).forEach((script) => {
   esbuild.buildSync({
     entryPoints: [script],
     outfile: args.script,
+    outdir: args.outdir,
     platform: "browser",
     define: { global: "window" },
     inject: args.inject ? ["./polyfill.js"] : [],
     bundle: true,
+    splitting: args.splitting,
     format: args.format,
     // eslint-disable-next-line no-undef
     minify: Boolean(process.env.PRODUCTION) ?? false,

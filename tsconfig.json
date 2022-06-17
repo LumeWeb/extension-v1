@@ -6,12 +6,9 @@
     "esModuleInterop": true,
     "sourceMap": false,
     "rootDir": "src",
-    "outDir": "dist",
+    "outDir": "public/background",
     "typeRoots": ["node_modules/@types", "./types"],
     "moduleResolution": "node",
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "./dist",
     "allowJs": true,
     "importsNotUsedAsValues": "remove"
   },
