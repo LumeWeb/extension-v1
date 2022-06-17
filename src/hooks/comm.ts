@@ -1,7 +1,5 @@
 import browser from "@lumeweb/webextension-polyfill";
-import resolver, { isDomain, isIp, normalizeDomain } from "@lumeweb/resolver";
-import { getContentType } from "../utils.js";
-import dnsCache from "../cache.js";
+import resolver, { normalizeDomain } from "@lumeweb/resolver";
 
 browser.runtime.onMessage.addListener(handleCommunication);
 

@@ -1,14 +1,14 @@
 import browser, {
+  Proxy,
   runtime,
   WebRequest,
-  Proxy,
-  // @ts-ignore
 } from "@lumeweb/webextension-polyfill";
 import { isDomain, isIp, normalizeDomain, Portal } from "@lumeweb/resolver";
 
 import tldEnum from "@lumeweb/tld-enum";
 import dnsCache from "../cache";
 import { resolver } from "../common.js";
+
 const isFirefox = typeof browser?.proxy?.onRequest?.addListener !== "undefined";
 
 if (isFirefox) {

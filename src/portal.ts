@@ -1,4 +1,3 @@
-import { createRequire } from "module";
 import WSReconnect from "./ws.js";
 import { resolver } from "./common.js";
 import { JSONPortalList } from "@lumeweb/resolver";

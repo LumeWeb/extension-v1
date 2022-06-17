@@ -1,4 +1,4 @@
-import browser, { runtime, Tabs, Menus } from "@lumeweb/webextension-polyfill";
+import browser, { Menus, runtime, Tabs } from "@lumeweb/webextension-polyfill";
 import dnsCache from "../cache.js";
 
 browser.contextMenus.create({

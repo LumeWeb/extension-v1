@@ -1,8 +1,6 @@
 // @ts-ignore
 import browser from "@lumeweb/webextension-polyfill";
-import * as uuid from "uuid";
 import {
-  contentPageResponses,
   JSONData,
   RPCMethodResponse,
   RPCRequest,
