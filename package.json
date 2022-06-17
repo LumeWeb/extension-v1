@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@lumeweb/js-sha3-browser": "^0.8.1",
-    "@lumeweb/resolver": "^0.2.1",
+    "@lumeweb/resolver": "https://github.com/LumeWeb/resolver.git#extension",
     "@lumeweb/skynet-js": "^4.0.21-beta",
     "@lumeweb/tld-enum": "https://github.com/LumeWeb/list-of-top-level-domains.git",
     "@lumeweb/webextension-polyfill": "github:LumeWeb/webextension-polyfill",
